@@ -1,0 +1,54 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.photo {
+    display: flex;
+    padding: 10px;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.photo > image {
+    width: 100px;
+    height: 100px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header-container button {
+    margin-left: 10px;
+}
+
+.option-container {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.option-container .options {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+}
+
+.option-container .options select {
+    margin: 10px;
+}
