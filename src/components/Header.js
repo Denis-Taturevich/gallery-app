@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LoacalStorageService from '../services/LocalStorageService';
 import * as constants from '../constants/Constants';
 
-const Header = ({ onSearchStringChange }) => {
-    const [searchString, setSearchString] = useState('');
+const Header = ({ query, setQuery }) => {
     const [condition, setCondition] = useState(constants.CONDITION_AND);
     const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -12,11 +11,11 @@ const Header = ({ onSearchStringChange }) => {
     );
 
     let saveClick = () => {
-        const isAdded = LoacalStorageService.addValue(searchString);
+        const isAdded = LoacalStorageService.addValue(query);
         if (isAdded) {
             setSearchResults([
                 ...searchResults,
-                { key: Date.now(), value: searchString },
+                { key: Date.now(), value: query },
             ]);
         }
     };
@@ -25,8 +24,7 @@ const Header = ({ onSearchStringChange }) => {
         const separator = condition === constants.CONDITION_AND ? '+' : '|';
         const options = selectedOptions.join(separator);
 
-        setSearchString(options);
-        onSearchStringChange(options);
+        setQuery(options);
     }, [selectedOptions, condition]);
 
     const onSelectedOptionChange = (e) => {
@@ -40,8 +38,7 @@ const Header = ({ onSearchStringChange }) => {
     };
 
     const onStringChange = (e) => {
-        setSearchString(e.target.value);
-        onSearchStringChange(e.target.value);
+        setQuery(e.target.value);
     };
 
     return (
@@ -52,7 +49,7 @@ const Header = ({ onSearchStringChange }) => {
                     type="text"
                     onChange={onStringChange}
                     placeholder="search for images..."
-                    value={searchString}
+                    value={query}
                 />
 
                 <button onClick={saveClick}>Save</button>
